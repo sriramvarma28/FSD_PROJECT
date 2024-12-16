@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Add icon library -->
+<link rel="stylesheet" href="{% static 'signup.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+    color: #ffffff;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    background: #fff;
+    color: #333;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 450px;
+}
+
+form h1 {
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4e2fb3;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.input-container i {
+    font-size: 1.2em;
+    color: #4e2fb3;
+    margin-right: 10px;
+}
+
+.input-field {
+    border: none;
+    width: 100%;
+    outline: none;
+    font-size: 1em;
+    background: none;
+}
+
+.radio-btn {
+    margin: 0 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+button {
+    width: 100%;
+    background-color: #4e2fb3;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #3a229d;
+}
+
+.alert {
+    font-size: 0.9em;
+    text-align: center;
+}
+
+@media (max-width: 500px) {
+    form {
+        padding: 20px;
+    }
+    .input-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .input-container i {
+        margin-bottom: 5px;
+    }
+}
+</style>
+</head>
+<body>
+<form action='signup_patient' method="POST">
+ <h1>SIGN UP AS PATIENT</h1>
+
+  {% csrf_token %}
+  
+  <center>
+      <div>
+        {% for message in messages %}
+        <div class="alert alert-warning" role="alert">
+            <h3 style="color: red;">{{message}}</h3>
+          </div>
+        {% endfor %}
+      </div>
+      </center>
+
+  <div class="input-container">
+    <i class="fa fa-user icon"></i>
+    <input class="input-field" type="text" placeholder="Username" name="username" required>
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-user icon"></i>
+    <input class="input-field" type="text" placeholder="Name" name="name" required>
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-envelope icon"></i>
+    <input class="input-field" type="text" placeholder="Email" name="email" required>
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-calendar icon"></i>
+    <input class="input-field" type="date" placeholder="Date-of-birth" name="dob" required>
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-birthday-cake icon"></i>
+    <input class="input-field" type="number" placeholder="Age" name="age" required>
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-genderless icon"></i>
+    <label><input class="radio-btn" type="radio" name="gender" value="male" checked> Male</label>
+    <label><input class="radio-btn" type="radio" name="gender" value="female"> Female</label>
+    <label><input class="radio-btn" type="radio" name="gender" value="other"> Other</label>
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-address-book icon"></i>
+    <input class="input-field" type="text" placeholder="Address" name="address" required>
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-phone icon"></i>
+    <input class="input-field" type="number" placeholder="Mobile" name="mobile" required>
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-key icon"></i>
+    <input class="input-field" type="password" placeholder="Password" name="password" required>
+  </div>
+
+  <div class="input-container">
+    <i class="fa fa-check icon"></i>
+    <input class="input-field" type="password" placeholder="Retype Password" name="password1" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Register</button>
+  <br><br>
+</form>
+</body>
+</html>

@@ -1,0 +1,188 @@
+﻿{% extends "basic.html" %}
+{% load static %}
+
+{% block title %}
+MediChat
+{% endblock %}
+
+{% block css %}
+<style>
+.footer1 {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+a {
+  color: #ffc107;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #fd7e14;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin-bottom: 100px; /* Ensure footer does not overlap content */
+}
+
+.jumbotron {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.jumbotron h2 {
+  font-size: 36px;
+  color: #343a40;
+  font-weight: bold;
+}
+
+.jumbotron p {
+  font-size: 18px;
+  color: #6c757d;
+  line-height: 1.6;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.modal-content {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.img {
+  max-width: 100px;
+  height: auto;
+  margin: 20px;
+  transition: transform 0.2s;
+  height: 40px;
+  width: 300px
+}
+
+.img:hover {
+  transform: scale(1.1);
+}
+
+.i {
+  color: #ffc107;
+  font-size: 20px;
+}
+.i:hover {
+  color: #fd7e14;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron mt-4">
+    <h2 class="display-4 text-center">Be Your Own Doctor :)</h2>
+    <p class="lead text-center">
+        This system is a web-based application that predicts the disease of the user with respect to the symptoms provided by the user. With the availability of doctor consultation at home, you no longer need to stress yourself about visiting a clinic or hospital and aggravate the injury.<br>
+        Why wait to see a doctor when there is a doctor to see you? At home, at your convenience.
+    </p>
+    {% if user.is_authenticated %}
+
+    {% else %}
+    <p class="lead text-center">
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Get Started</button>
+    </p>
+    {% endif %}
+</div>
+
+<!-- Large modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <center>
+        <h1>Sign-In As</h1>
+      </center>
+      <br><br>
+      <center>
+        <form>
+          <div class="container mt-5 mb-5">
+            <div class="row">
+              <div class="col">
+                <a href="{% url 'sign_in_admin' %}">
+                  <img alt="admin" src="{% static 'homepage/admin.png' %}" class="img">
+                </a>
+              </div>
+              <div class="col">
+                <a href="{% url 'sign_in_doctor' %}">
+                  <img alt="doctor" src="{% static 'homepage/doctor.png' %}" class="img">
+                </a>
+              </div>
+              <div class="col">
+                <a href="{% url 'sign_in_patient' %}">
+                  <img alt="patient" src="{% static 'homepage/patient.png' %}" class="img">
+                </a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </center>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <center>
+        <h1>Sign-Up As</h1>
+      </center>
+      <br><br>
+      <center>
+        <form>
+          <div class="container mt-5 mb-5">
+            <div class="row">
+              <div class="col">
+                <a href="{% url 'signup_doctor' %}">
+                  <img alt="doctor" src="{% static 'homepage/doctor.png' %}" class="img">
+                </a>
+              </div>
+              <div class="col">
+                <a href="{% url 'signup_patient' %}">
+                  <img alt="patient" src="{% static 'homepage/patient.png' %}" class="img">
+                </a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </center>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer1">
+  <div>Email: sriram@gmail.com</div>
+  <div>Contact No.: 1234567890</div>
+  <div>Address: Tuni, Andhra Pradesh</div>
+  <div class="footer-copyright">&copy; 2020 Copyright: <a href="#">Disease_prediction.com</a></div>
+  <div class="m-3">
+    <a href="https://www.facebook.com"><i class="i fa fa-facebook-official" aria-hidden="true"></i></a>&nbsp;
+    <a href="https://www.youtube.com"><i class="i fa fa-youtube-play" aria-hidden="true"></i></a>&nbsp;
+    <a href="https://www.instagram.com"><i class="i fa fa-instagram" aria-hidden="true"></i></a>
+  </div>
+</div>
+{% endblock %}
